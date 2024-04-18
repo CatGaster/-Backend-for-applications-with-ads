@@ -2,6 +2,7 @@
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
+from django_filters import rest_framework as filters
 
 from advertisements.filters import AdvertisementFilter
 from advertisements.models import Advertisement
@@ -14,13 +15,16 @@ class AdvertisementViewSet(ModelViewSet):
     queryset = Advertisement.objects.all()
     serializer_class = AdvertisementSerializer
     pagination_class = [OwnerOrRead]
+    filter_backends = [filters.DjangoFilterBackend]
+    filter_fields = ['created_at', 'creator', 'status']
+    
 
     def get_permissions(self):
         """Получение прав для действий."""
-        if self.action in ["create", "update", "partial_update", "destroy"]:
-            return [OwnerOrRead()]
-        elif self.action == 'create':
+        if self.action == 'create':
             return [IsAuthenticated()]
+        elif self.action in ["create", "update", "partial_update", "destroy"]:
+            return [OwnerOrRead()]
         return []
 
     def list(self, request):
@@ -29,4 +33,3 @@ class AdvertisementViewSet(ModelViewSet):
         serializer = AdvertisementSerializer(queryset, many=True)
         return Response(serializer.data)
     
-   

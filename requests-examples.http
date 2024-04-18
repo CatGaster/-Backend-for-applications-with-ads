@@ -3,16 +3,15 @@
 @baseUrl = http://localhost:8000/api
 
 # получение объявлений
-GET {{baseUrl}}/advertisements/57
+GET {{baseUrl}}/advertisements/
 Content-Type: application/json
-Authorization: Token 7be41e6228fc12336dce2cf8bc6c497335d931b7
-
+Authorization: Token dc604c07c9b757a2f3d125b71a38ceb4bb0d5915
 ###
 
 # создание объявления
 POST {{baseUrl}}/advertisements/
 Content-Type: application/json
-Authorization: Token 7be41e6228fc12336dce2cf8bc6c497335d931b7
+Authorization: Token dc604c07c9b757a2f3d125b71a38ceb4bb0d5915
 
 {
   "title": "Шкаф IKEA",
@@ -23,14 +22,13 @@ Authorization: Token 7be41e6228fc12336dce2cf8bc6c497335d931b7
 
 DELETE {{baseUrl}}/advertisements/1/
 Content-Type: application/json
-Authorization: Token 7be41e6228fc12336dce2cf8bc6c497335d931b7
-
+Authorization: Token dc604c07c9b757a2f3d125b71a38ceb4bb0d5915
 ###
 
 # попытка поменять объявление
-PATCH {{baseUrl}}/advertisements/57/
+PATCH {{baseUrl}}/advertisements/2/
 Content-Type: application/json
-Authorization: Token 7be41e6228fc12336dce2cf8bc6c497335d931b7
+Authorization: Token dc604c07c9b757a2f3d125b71a38ceb4bb0d5915
 
 {
   "status": "CLOSED"
